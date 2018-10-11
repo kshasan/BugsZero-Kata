@@ -51,7 +51,11 @@ public class Game {
 		return players.size();
 	}
 
-	public void roll(int roll) {
+	public boolean roll(int roll) {
+		if (!isPlayable()) {
+			return false;
+		}
+
 		System.out.println(players.get(currentPlayer) + " is the current player");
 		System.out.println("They have rolled a " + roll);
 		
@@ -70,7 +74,8 @@ public class Game {
 
 			movePlayerAndAskQuestion(roll);
 		}
-		
+
+		return true;
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {

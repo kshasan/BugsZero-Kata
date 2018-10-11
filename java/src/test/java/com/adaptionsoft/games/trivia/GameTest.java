@@ -3,7 +3,10 @@ package com.adaptionsoft.games.trivia;
 import static org.junit.Assert.*;
 
 import com.adaptionsoft.games.trivia.runner.GameRunner;
+import com.adaptionsoft.games.uglytrivia.Game;
+
 import org.approvaltests.Approvals;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.*;
@@ -24,4 +27,16 @@ public class GameTest {
         Approvals.verify(resultStream.toString());
 
 	}
+
+	@Test
+    public void failIfLessThanTwoPlayers() {
+	    boolean notAWinner;
+        Game aGame = new Game();
+        Random rand = new Random();
+
+        aGame.add("Chet");
+
+        boolean status = aGame.roll(rand.nextInt(5) + 1);
+        Assert.assertEquals(status, false);
+    }
 }
